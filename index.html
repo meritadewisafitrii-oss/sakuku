@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Saku adalah pencatat pengeluaran uang saku yang sederhana, cepat, dan tersimpan di perangkatmu.">
+  <meta name="theme-color" content="#f2f0e7">
+  <title>Saku — Catat Uang Saku</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23173c2b'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23d7f36b'/%3E%3Cpath d='M27 26h10M27 38h10M32 22v20' stroke='%23173c2b' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="top">
+  <a class="skip-link" href="#main">Lewati ke konten utama</a>
+
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-food" viewBox="0 0 24 24">
+      <path d="M5 9.5h14M7 9.5a5 5 0 0 1 10 0M4 13h16a8 8 0 0 1-16 0Z"/>
+      <path d="M9 4.5c.6-.8.6-1.7 0-2.5M13 4.5c.6-.8.6-1.7 0-2.5"/>
+    </symbol>
+    <symbol id="icon-transport" viewBox="0 0 24 24">
+      <path d="M6 17h12M5 17V9.5C5 7 8 5 12 5s7 2 7 4.5V17M5 12h14"/>
+      <circle cx="8" cy="18.5" r="1.5"/>
+      <circle cx="16" cy="18.5" r="1.5"/>
+      <path d="M8 8.5h8"/>
+    </symbol>
+    <symbol id="icon-shopping" viewBox="0 0 24 24">
+      <path d="M5 8h14l-1 12H6L5 8Z"/>
+      <path d="M9 9V6.5a3 3 0 0 1 6 0V9"/>
+    </symbol>
+    <symbol id="icon-entertainment" viewBox="0 0 24 24">
+      <path d="M4 6.5h16v11H4z"/>
+      <path d="M8 6.5v11M16 6.5v11M11 9.5l3 2.5-3 2.5v-5Z"/>
+    </symbol>
+    <symbol id="icon-other" viewBox="0 0 24 24">
+      <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>
+      <circle cx="12" cy="12" r="3.5"/>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14"/>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M9 7V4.5h6V7M7 7l1 13h8l1-13M10 10.5v6M14 10.5v6"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24">
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2"/>
+      <path d="M8 3.5V7M16 3.5V7M3.5 10h17"/>
+    </symbol>
+    <symbol id="icon-lock" viewBox="0 0 24 24">
+      <rect x="4.5" y="10" width="15" height="10.5" rx="2"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24">
+      <path d="m5 12.5 4.5 4.5L19 7.5"/>
+    </symbol>
+    <symbol id="icon-receipt" viewBox="0 0 24 24">
+      <path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2v-17Z"/>
+      <path d="M9 8h6M9 11.5h6M9 15h3.5"/>
+    </symbol>
+    <symbol id="icon-coins" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="6.5" rx="7" ry="3"/>
+      <path d="M5 6.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5M5 11.5v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Saku, kembali ke atas">
+        <span class="brand-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 7.5h12.5A1.5 1.5 0 0 1 19 9v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h10"/>
+            <path d="M15.5 12.5H19v3h-3.5a1.5 1.5 0 0 1 0-3Z"/>
+          </svg>
+        </span>
+        <span class="brand-name">saku<span class="brand-dot">.</span></span>
+      </a>
+      <div class="header-meta">
+        <span class="local-badge"><span class="status-dot" aria-hidden="true"></span>Data di perangkat ini</span>
+        <time class="current-date" id="currentDate">Rabu, 21 Oktober 2026</time>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell" id="main">
+    <section class="intro" aria-labelledby="pageTitle">
+      <div>
+        <p class="eyebrow"><span class="eyebrow-line" aria-hidden="true"></span>Catatan uang saku</p>
+        <h1 id="pageTitle">Uang saku, <span class="accent-serif">tanpa misteri.</span></h1>
+      </div>
+      <p class="intro-copy">Catat pengeluaran kecil hari ini, lihat ke mana uangmu pergi, dan buat minggu ini terasa lebih ringan.</p>
+    </section>
+
+    <div class="dashboard">
+      <section class="overview" aria-label="Ringkasan pengeluaran">
+        <article class="week-card" aria-labelledby="weekLabel">
+          <span class="week-orbit" aria-hidden="true"></span>
+          <span class="week-texture" aria-hidden="true"></span>
+          <div class="week-top">
+            <div>
+              <p class="week-label" id="weekLabel"><span class="week-label-dot" aria-hidden="true"></span>Total minggu ini</p>
+              <p class="week-range" id="weekRange">19–25 Oktober 2026</p>
+            </div>
+          </div>
+          <p class="week-total" id="weekTotal">Rp 0</p>
+          <div class="week-bottom">
+            <span class="week-count" id="weekCount">Belum ada pengeluaran minggu ini</span>
+            <span class="week-average" id="weekAverage"></span>
+          </div>
+        </article>
+
+        <div class="quick-stats">
+          <article class="stat-card">
+            <div class="stat-heading">
+              <span>Hari ini</span>
+              <span class="stat-icon" aria-hidden="true">
+                <svg><use href="#icon-calendar"></use></svg>
+              </span>
+            </div>
+            <p class="stat-value" id="todayTotal">Rp 0</p>
+            <p class="stat-meta" id="todayMeta">Belum ada transaksi</p>
+          </article>
+          <article class="stat-card stat-card--tint">
+            <div class="stat-heading">
+              <span>Rata-rata / hari</span>
+              <span class="stat-icon" aria-hidden="true">
+                <svg><use href="#icon-coins"></use></svg>
+              </span>
+            </div>
+            <p class="stat-value" id="dailyAverage">Rp 0</p>
+            <p class="stat-meta">Dari 7 hari terakhir</p>
+          </article>
+        </div>
+      </section>
+
+      <aside class="entry-panel" aria-labelledby="entryTitle">
+        <form id="transactionForm" novalidate>
+          <header class="form-header">
+            <div class="form-title-row">
+              <div>
+                <p class="form-kicker">Catat baru</p>
+                <h2 id="entryTitle">Mau keluar berapa?</h2>
+              </div>
+              <span class="form-mark" aria-hidden="true">
+                <svg><use href="#icon-plus"></use></svg>
+              </span>
+            </div>
+            <p class="form-description">Isi empat hal, lalu biarkan Saku yang mengingat sisanya.</p>
+          </header>
+
+          <div class="form-fields">
+            <div class="field" data-field="name">
+              <label for="expenseName">Nama pengeluaran</label>
+              <input
+                class="text-input"
+                type="text"
+                id="expenseName"
+                name="name"
+                placeholder="Contoh: Nasi goreng"
+                maxlength="60"
+                autocomplete="off"
+                aria-describedby="nameError"
+                required
+              >
+              <p class="field-error" id="nameError"></p>
+            </div>
+
+            <div class="field" data-field="amount">
+              <label for="expenseAmount">Nominal</label>
+              <div class="amount-wrap">
+                <span class="amount-prefix" aria-hidden="true">Rp</span>
+                <input
+                  class="text-input amount-input"
+                  type="text"
+                  id="expenseAmount"
+                  name="amount"
+                  placeholder="25.000"
+                  inputmode="numeric"
+                  maxlength="13"
+                  autocomplete="off"
+                  aria-describedby="amountError"
+                  required
+                >
+              </div>
+              <p class="field-error" id="amountError"></p>
+            </div>
+
+            <fieldset class="field category-field" data-field="category" aria-describedby="categoryError">
+              <legend>Kategori <span class="required-mark" aria-hidden="true">*</span></legend>
+              <div class="category-grid">
+                <label class="category-option">
+                  <input type="radio" name="category" value="Makanan" required>
+                  <svg class="category-icon" aria-hidden="true"><use href="#icon-food"></use></svg>
+                  <span>Makanan</span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Transportasi" required>
+                  <svg class="category-icon" aria-hidden="true"><use href="#icon-transport"></use></svg>
+                  <span>Transportasi</span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Belanja" required>
+                  <svg class="category-icon" aria-hidden="true"><use href="#icon-shopping"></use></svg>
+                  <span>Belanja</span>
+                </label>
+                <label class="category-option">
+                  <input type="radio" name="category" value="Hiburan" required>
+                  <svg class="category-icon" aria-hidden="true"><use href="#icon-entertainment"></use></svg>
+                  <span>Hiburan</span>
+                </label>
+                <label class="category-option category-option--wide">
+                  <input type="radio" name="category" value="Lainnya" required>
+                  <svg class="category-icon" aria-hidden="true"><use href="#icon-other"></use></svg>
+                  <span>Lainnya</span>
+                </label>
+              </div>
+              <p class="field-error" id="categoryError"></p>
+            </fieldset>
+
+            <div class="field" data-field="date">
+              <label for="expenseDate">Tanggal</label>
+              <input
+                class="text-input date-input"
+                type="date"
+                id="expenseDate"
+                name="date"
+                aria-describedby="dateError"
+                required
+              >
+              <p class="field-error" id="dateError"></p>
+            </div>
+          </div>
+
+          <button class="submit-button" type="submit">
+            <svg class="button-icon" aria-hidden="true"><use href="#icon-plus"></use></svg>
+            <span>Simpan pengeluaran</span>
+            <span class="submit-arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="form-footnote">
+            <svg aria-hidden="true"><use href="#icon-lock"></use></svg>
+            Tersimpan privat di browser ini—tanpa akun, tanpa server.
+          </p>
+        </form>
+      </aside>
+
+      <section class="chart-card" aria-labelledby="chartTitle">
+        <div class="chart-header">
+          <div>
+            <h2 id="chartTitle">Irama 7 hari</h2>
+            <p class="chart-subtitle">Pengeluaran harian, termasuk hari ini.</p>
+          </div>
+          <div class="chart-meta">
+            <span class="chart-legend"><span aria-hidden="true"></span>Hari ini</span>
+            <div class="chart-total">
+              <span>Total 7 hari</span>
+              <strong id="chartTotal">Rp 0</strong>
+            </div>
+          </div>
+        </div>
+        <div class="chart-plot" id="chart" role="group" aria-label="Grafik pengeluaran tujuh hari terakhir"></div>
+        <p class="chart-caption" id="chartCaption">Grafik akan terisi otomatis saat kamu mulai mencatat.</p>
+      </section>
+
+      <section class="history" aria-labelledby="historyTitle">
+        <header class="history-header">
+          <div>
+            <h2 id="historyTitle">Riwayat pengeluaran</h2>
+            <p class="history-meta" id="historyMeta">Semua catatanmu ada di sini.</p>
+          </div>
+          <span class="history-count" id="historyCount">0 transaksi</span>
+        </header>
+
+        <div class="list-head" aria-hidden="true">
+          <span>Pengeluaran</span>
+          <span>Kategori</span>
+          <span>Tanggal</span>
+          <span>Nominal</span>
+          <span></span>
+        </div>
+
+        <ul class="transaction-list" id="transactionList" aria-label="Daftar transaksi"></ul>
+
+        <div class="empty-state" id="emptyState">
+          <span class="empty-visual" aria-hidden="true">
+            <svg><use href="#icon-receipt"></use></svg>
+          </span>
+          <h3>Belum ada catatan</h3>
+          <p>Mulai dari pengeluaran pertamamu. Sekecil apa pun, tetap layak dicatat.</p>
+          <button class="empty-cta" type="button" id="emptyCta">
+            <svg aria-hidden="true"><use href="#icon-plus"></use></svg>
+            Catat sekarang
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand"><span aria-hidden="true">◒</span> Saku—untuk uang saku yang lebih tenang.</p>
+    <p>Data hanya tersimpan di browser ini.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true" hidden>
+    <svg class="toast-icon" aria-hidden="true"><use id="toastIcon" href="#icon-trash"></use></svg>
+    <span class="toast-message" id="toastMessage"></span>
+    <button class="toast-action" id="toastAction" type="button" hidden>Urungkan</button>
+  </div>
+
+  <p class="sr-only" id="liveRegion" aria-live="polite" aria-atomic="true"></p>
+
+  <noscript>
+    <div class="noscript">Saku membutuhkan JavaScript untuk mencatat dan menyimpan pengeluaranmu.</div>
+  </noscript>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
